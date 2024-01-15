@@ -18,6 +18,8 @@
             height: 150px;
             object-fit: cover;
             margin-bottom: 10px;
+            align-self: center;
+            border: 1px solid black;
         }
 
         form {
@@ -25,6 +27,7 @@
             flex-direction: column;
             max-width: 300px;
             margin: 0 auto;
+            align-self: center;
         }
 
         label {
@@ -65,16 +68,17 @@
 
 <body>
     <h2>Informações de Contato</h2>
-    <img id="profile-image" src="https://i.pinimg.com/236x/cd/1c/ff/cd1cff2d9fb5ec3324fa7521471992b5.jpg"
-        alt="Hulk Teste">
+    <img id="profile-image"
+        src="https://pronep.s3.amazonaws.com/wp-content/uploads/2021/04/29174900/apoio-pass-ilustracao-1.jpg"
+        alt="Imagem">
 
     <form>
-        <h3>Nome do Contato</h3>
+        <h3>APOIO PASS</h3>
 
 
         <label for="telefone">Telefone:</label>
         <div style="display: flex;">
-            <input type="tel" id="telefone" name="telefone" value="+55 11 94114-6543" readonly>
+            <input type="tel" id="telefone" name="telefone" value="0800 282 6666" readonly>
             <button type="button" onclick="salvarContato()">Salvar</button>
         </div>
 
