@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,14 +31,26 @@
             margin-bottom: 5px;
         }
 
+        label[for="telefone"] {
+            align-self: flex-start;
+        }
+
+        label[for="email"] {
+
+            align-self: flex-start;
+
+        }
+
         input {
             margin-bottom: 15px;
             padding: 8px;
+            text-align-last: center;
         }
 
         button {
             padding: 10px;
             background-color: #4CAF50;
+            margin-left: 10px;
             color: white;
             border: none;
             cursor: pointer;
@@ -49,17 +62,17 @@
         }
     </style>
 </head>
+
 <body>
-
-    <h2>Salvar Contato</h2>
-
-    <img id="profile-image" src="https://i.pinimg.com/236x/cd/1c/ff/cd1cff2d9fb5ec3324fa7521471992b5.jpg" alt="Hulk Teste">
+    <h2>Informações de Contato</h2>
+    <img id="profile-image" src="https://i.pinimg.com/236x/cd/1c/ff/cd1cff2d9fb5ec3324fa7521471992b5.jpg"
+        alt="Hulk Teste">
 
     <form>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" value="Hulk Teste" readonly>
+        <h3>Nome do Contato</h3>
 
-        <label for="telefone">Número de Telefone:</label>
+
+        <label for="telefone">Telefone:</label>
         <div style="display: flex;">
             <input type="tel" id="telefone" name="telefone" value="+55 11 94114-6543" readonly>
             <button type="button" onclick="salvarContato()">Salvar</button>
@@ -85,4 +98,5 @@
     </script>
 
 </body>
+
 </html>
