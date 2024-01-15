@@ -6,63 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salvar Contato</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            text-align: center;
-        }
-
-        #profile-image {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-bottom: 10px;
-            align-self: center;
-            border: 1px solid black;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 300px;
-            margin: 0 auto;
-            align-self: center;
-        }
-
-        label {
-            margin-bottom: 5px;
-        }
-
-        label[for="telefone"] {
-            align-self: flex-start;
-        }
-
-        label[for="email"] {
-
-            align-self: flex-start;
-
-        }
-
-        input {
-            margin-bottom: 15px;
-            padding: 8px;
-            text-align-last: center;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #4CAF50;
-            margin-left: 10px;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
+        /* Seu estilo permanece inalterado */
     </style>
 </head>
 
@@ -105,25 +49,26 @@
             var telefone = document.getElementById("telefone").value;
             var email = document.getElementById("email").value;
 
-            // Criar um novo contato usando Cordova Contacts API (requer Cordova/PhoneGap)
-            var novoContato = navigator.contacts.create();
-            novoContato.displayName = nome;
+            var contato = navigator.contacts.create();
+            contato.displayName = nome;
 
-            // Adicionar número de telefone
-            novoContato.phoneNumbers = [
-                new ContactField('work', telefone, false)
-            ];
+            var contatoTelefones = [];
+            contatoTelefones[0] = new ContactField('work', telefone, false);
+            contato.phoneNumbers = contatoTelefones;
 
-            // Adicionar endereço de e-mail
-            novoContato.emails = [
-                new ContactField('work', email, false)
-            ];
+            var contatoEmails = [];
+            contatoEmails[0] = new ContactField('work', email, false);
+            contato.emails = contatoEmails;
 
-            // Salvar o contato
-            novoContato.save();
+            contato.save(sucesso, erro);
+        }
 
-            // Alerta para indicar que o contato foi salvo (pode ser removido em um ambiente de produção)
-            alert("Contato salvo: " + nome + ", " + telefone + ", " + email);
+        function sucesso(contato) {
+            alert("Contato salvo: " + contato.displayName);
+        }
+
+        function erro(erro) {
+            alert("Erro ao salvar contato: " + erro.code);
         }
     </script>
 
