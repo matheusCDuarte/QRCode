@@ -73,7 +73,6 @@
     <form>
         <h3>APOIO PASS</h3>
 
-
         <label for="telefone">Telefone:</label>
         <div style="display: flex;">
             <input type="tel" id="telefone" name="telefone" value="0800 282 6666" readonly>
@@ -85,6 +84,9 @@
             <input type="email" id="email" name="email" value="teste@teste.com" readonly>
             <button type="button" onclick="enviarEmail()">Enviar</button>
         </div>
+
+        <!-- Botão adicional para salvar o contato -->
+        <button type="button" onclick="salvarContatoCompleto()">Salvar Contato</button>
     </form>
 
     <script>
@@ -96,6 +98,32 @@
         function enviarEmail() {
             var email = document.getElementById("email").value;
             window.location.href = "mailto:" + encodeURIComponent(email);
+        }
+
+        function salvarContatoCompleto() {
+            var nome = "Apoio Pass";
+            var telefone = document.getElementById("telefone").value;
+            var email = document.getElementById("email").value;
+
+            // Criar um novo contato usando Cordova Contacts API (requer Cordova/PhoneGap)
+            var novoContato = navigator.contacts.create();
+            novoContato.displayName = nome;
+
+            // Adicionar número de telefone
+            novoContato.phoneNumbers = [
+                new ContactField('work', telefone, false)
+            ];
+
+            // Adicionar endereço de e-mail
+            novoContato.emails = [
+                new ContactField('work', email, false)
+            ];
+
+            // Salvar o contato
+            novoContato.save();
+
+            // Alerta para indicar que o contato foi salvo (pode ser removido em um ambiente de produção)
+            alert("Contato salvo: " + nome + ", " + telefone + ", " + email);
         }
     </script>
 
