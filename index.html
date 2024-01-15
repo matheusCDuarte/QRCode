@@ -3,38 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
+    <title>Salvar Contato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
+    <h2>Salvar Contato</h2>
+
+    <form>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="telefone">Número de Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="button" onclick="salvarContato()">Salvar Contato</button>
+    </form>
+
     <script>
-        function createQRCode() {
-            var phoneNumber = document.getElementById("phoneNumber").value;
-            var qrCodeText = "tel:" + phoneNumber;
+        function salvarContato() {
+            var nome = document.getElementById("nome").value;
+            var telefone = document.getElementById("telefone").value;
+            var email = document.getElementById("email").value;
 
-            var qrCodeContainer = document.getElementById("qrcode");
+            // Construa os links tel: e mailto: para salvar o contato
+            var linkTelefone = "tel:" + encodeURIComponent(telefone);
+            var linkEmail = "mailto:" + encodeURIComponent(email) + "?subject=Contato de " + encodeURIComponent(nome);
 
-            if (qrCodeContainer.firstChild) {
-                qrCodeContainer.removeChild(qrCodeContainer.firstChild);
-            }
+            // Exiba alerta (pode ser substituído por ações reais)
+            alert("Contato salvo:\nNome: " + nome + "\nTelefone: " + telefone + "\nE-mail: " + email);
 
-            var qrCode = new QRCode(qrCodeContainer, {
-                text: qrCodeText,
-                width: 128,
-                height: 128
-            });
+            // Adicione redirecionamento ou outras ações conforme necessário
+            // window.location.href = "pagina_de_redirecionamento.html";
+
+            // Simule ação de salvar no celular (abre tela de contato ou email)
+            window.location.href = linkTelefone;
         }
     </script>
 
-    <h2>Gerador de QR Code para Número de Telefone</h2>
-
-    <label for="phoneNumber">Número de Telefone:</label>
-    <input type="text" id="phoneNumber" placeholder="Digite o número de telefone">
-
-    <button onclick="createQRCode()">Gerar QR Code</button>
-
-    <div id="qrcode"></div>
-
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 </body>
 </html>
