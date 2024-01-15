@@ -63,6 +63,11 @@
         button:hover {
             background-color: #45a049;
         }
+
+        button#salvar-contato {
+            width: 100%;
+            /* Adicionando a propriedade para ocupar toda a largura */
+        }
     </style>
 </head>
 
@@ -87,7 +92,8 @@
         </div>
 
         <!-- Botão adicional para salvar o contato -->
-        <button type="button" onclick="salvarContatoCompleto()">Salvar Contato</button>
+        <br><br>
+        <button id="salvar-contato" type="button" onclick="salvarContatoCompleto()">Salvar Contato</button>
     </form>
 
     <script>
