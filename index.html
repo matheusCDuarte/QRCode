@@ -65,8 +65,7 @@
         }
 
         button#salvar-contato {
-            width: 100%;
-            /* Adicionando a propriedade para ocupar toda a largura */
+            width: 100% !important;
         }
     </style>
 </head>
@@ -93,7 +92,8 @@
 
         <!-- Botão adicional para salvar o contato -->
         <br><br>
-        <button id="salvar-contato" type="button" onclick="salvarContatoCompleto()">Salvar Contato</button>
+        <button id="salvar-contato" name="salvar-contato" type="button" onclick="salvarContatoCompleto()">Salvar
+            Contato</button>
     </form>
 
     <script>
