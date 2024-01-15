@@ -6,9 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salvar Contato</title>
     <style>
-        /* Seu estilo permanece inalterado */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        #profile-image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            align-self: center;
+            border: 1px solid black;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto;
+            align-self: center;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        label[for="telefone"] {
+            align-self: flex-start;
+        }
+
+        label[for="email"] {
+
+            align-self: flex-start;
+
+        }
+
+        input {
+            margin-bottom: 15px;
+            padding: 8px;
+            text-align-last: center;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            margin-left: 10px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
+
 
 <body>
     <h2>Informações de Contato</h2>
@@ -49,29 +106,30 @@
             var telefone = document.getElementById("telefone").value;
             var email = document.getElementById("email").value;
 
-            var contato = navigator.contacts.create();
-            contato.displayName = nome;
+            // Criar um conteúdo vCard
+            var vCardContent = `BEGIN:VCARD
+VERSION:3.0
+FN:${nome}
+TEL:${telefone}
+EMAIL:${email}
+END:VCARD`;
 
-            var contatoTelefones = [];
-            contatoTelefones[0] = new ContactField('work', telefone, false);
-            contato.phoneNumbers = contatoTelefones;
+            // Criar um Blob com o conteúdo vCard
+            var blob = new Blob([vCardContent], { type: "text/vcard" });
 
-            var contatoEmails = [];
-            contatoEmails[0] = new ContactField('work', email, false);
-            contato.emails = contatoEmails;
+            // Criar um link para download
+            var link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "contato.vcf";
+            document.body.appendChild(link);
 
-            contato.save(sucesso, erro);
-        }
+            // Simular um clique no link para iniciar o download
+            link.click();
 
-        function sucesso(contato) {
-            alert("Contato salvo: " + contato.displayName);
-        }
-
-        function erro(erro) {
-            alert("Erro ao salvar contato: " + erro.code);
+            // Remover o link após o download
+            document.body.removeChild(link);
         }
     </script>
-
 </body>
 
 </html>
