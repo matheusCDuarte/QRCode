@@ -11,6 +11,14 @@
             text-align: center;
         }
 
+        #profile-image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
         form {
             display: flex;
             flex-direction: column;
@@ -33,6 +41,7 @@
             color: white;
             border: none;
             cursor: pointer;
+            margin-bottom: 15px;
         }
 
         button:hover {
@@ -44,37 +53,34 @@
 
     <h2>Salvar Contato</h2>
 
+    <img id="profile-image" src="https://i.pinimg.com/236x/cd/1c/ff/cd1cff2d9fb5ec3324fa7521471992b5.jpg" alt="Hulk Teste">
+
     <form>
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+        <input type="text" id="nome" name="nome" value="Hulk Teste" readonly>
 
         <label for="telefone">Número de Telefone:</label>
-        <input type="tel" id="telefone" name="telefone" required>
+        <div style="display: flex;">
+            <input type="tel" id="telefone" name="telefone" value="+55 11 94114-6543" readonly>
+            <button type="button" onclick="salvarContato()">Salvar</button>
+        </div>
 
         <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required>
-
-        <button type="button" onclick="salvarContato()">Salvar Contato</button>
+        <div style="display: flex;">
+            <input type="email" id="email" name="email" value="teste@teste.com" readonly>
+            <button type="button" onclick="enviarEmail()">Enviar</button>
+        </div>
     </form>
 
     <script>
         function salvarContato() {
-            var nome = document.getElementById("nome").value;
             var telefone = document.getElementById("telefone").value;
+            window.location.href = "tel:" + encodeURIComponent(telefone);
+        }
+
+        function enviarEmail() {
             var email = document.getElementById("email").value;
-
-            // Construa os links tel: e mailto: para salvar o contato
-            var linkTelefone = "tel:" + encodeURIComponent(telefone);
-            var linkEmail = "mailto:" + encodeURIComponent(email) + "?subject=Contato de " + encodeURIComponent(nome);
-
-            // Exiba alerta (pode ser substituído por ações reais)
-            alert("Contato salvo:\nNome: " + nome + "\nTelefone: " + telefone + "\nE-mail: " + email);
-
-            // Adicione redirecionamento ou outras ações conforme necessário
-            // window.location.href = "pagina_de_redirecionamento.html";
-
-            // Simule ação de salvar no celular (abre tela de contato ou email)
-            window.location.href = linkTelefone;
+            window.location.href = "mailto:" + encodeURIComponent(email);
         }
     </script>
 
