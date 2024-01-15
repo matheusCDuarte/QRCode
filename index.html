@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+</head>
+<body>
+
+    <script>
+        function createQRCode() {
+            var phoneNumber = document.getElementById("phoneNumber").value;
+            var qrCodeText = "tel:" + phoneNumber;
+
+            var qrCodeContainer = document.getElementById("qrcode");
+
+            if (qrCodeContainer.firstChild) {
+                qrCodeContainer.removeChild(qrCodeContainer.firstChild);
+            }
+
+            var qrCode = new QRCode(qrCodeContainer, {
+                text: qrCodeText,
+                width: 128,
+                height: 128
+            });
+        }
+    </script>
+
+    <h2>Gerador de QR Code para Número de Telefone</h2>
+
+    <label for="phoneNumber">Número de Telefone:</label>
+    <input type="text" id="phoneNumber" placeholder="Digite o número de telefone">
+
+    <button onclick="createQRCode()">Gerar QR Code</button>
+
+    <div id="qrcode"></div>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+</body>
+</html>
